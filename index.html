@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERRY CHRISTMAS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Audio -->
+    <audio id="backgroundMusic" loop muted>
+        <source src="/nhac/1.mp3" type="audio/mpeg">
+        Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
+
+    <!-- Christmas Message -->
+    <div id="as" class="christmas-message">Merry Christmas</div>
+    <div class="tree-container">
+        <img src="https://github.com/Panbap/datapanbap/blob/main/image/big_tree.png?raw=true" alt="Cây thông" class="tree-icon">
+    </div>
+
+    <!-- Button -->
+    <div class="container">
+        <button id="showButton">
+            Xuân Mai bấm vào đây đi!
+        </button>
+    </div>
+
+    <!-- Card -->
+    <div id="guideInfo" class="hidden">
+        <button id="closeButton" class="close-btn">X</button>
+        <div id="ax" class="card">
+            <div class="imgBox">
+                <div class="bark"></div>
+                <img src="https://github.com/Panbap/datapanbap/blob/main/image/mery.png?raw=true">
+            </div>
+            <div class="details">
+                <h4 class="color2 margin">(MERRY CHRISTMAS)</h4>
+                <p>Giáng Sinh đã qua,năm mới sắp đến rồi.</p>
+                <p>Chúc Xuân Mai của anh mùa lễ ấm áp và ngọt</p>
+                <p>ngào như tình yêu của chúng ta.</p>
+                <p>Cảm ơn em luôn bên cạnh anh.</p>
+                <p>Hy vọng chúng ta sẽ có thêm nhiều</p>
+                <p>kỷ niệm đẹp trong năm tới.</p>
+                <p class="text-right">em cười nhiều lên nhaa</p>
+                <p class="text-right">♥ yêu em nhiều</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const backgroundMusic = document.getElementById("backgroundMusic");
+
+            // Hàm phát nhạc
+            const playMusic = () => {
+                backgroundMusic.muted = false; // Bỏ tắt tiếng
+                backgroundMusic.play().then(() => {
+                    console.log("Nhạc tự động phát thành công.");
+                }).catch((error) => {
+                    console.error("Không thể phát nhạc tự động: ", error);
+                });
+            };
+
+            // Thử phát nhạc tự động
+            backgroundMusic.play().catch(() => {
+                // Nếu bị chặn, thêm sự kiện click để phát
+                console.log("Trình duyệt chặn tự động phát nhạc. Đợi người dùng tương tác...");
+                document.addEventListener("click", playMusic, { once: true });
+            });
+
+            // Nút hiển thị thông tin
+            const showButton = document.getElementById("showButton");
+            const guideInfo = document.getElementById("guideInfo");
+            const closeButton = document.getElementById("closeButton");
+
+            showButton.addEventListener("click", function () {
+                guideInfo.classList.remove("hidden");
+                guideInfo.classList.add("show");
+                showButton.classList.add("hidden");
+            });
+
+            closeButton.addEventListener("click", function () {
+                guideInfo.classList.remove("show");
+                setTimeout(() => {
+                    guideInfo.classList.add("hidden");
+                    showButton.classList.remove("hidden");
+                }, 500);
+            });
+        });
+    </script>
+</body>
+
+</html>
